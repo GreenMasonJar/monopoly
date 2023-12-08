@@ -1,0 +1,15 @@
+.row {
+  display: flex;
+}
+
+.box {
+  width: 75px;
+  height: 75px;
+}
+
+.theBox {
+  background-color: ghostwhite;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
