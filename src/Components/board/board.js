@@ -31,17 +31,33 @@ function Board() {
     }, []);
 
     return (
-    <>
+        <>
             {chessBoard.length > 0 &&
                 chessBoard.map((row, rIndex) => {
                     return (
                         <div className="row" key={rIndex}>
                             {row.map((_, cIndex) => {
+                                let boxclass = "";
+                                let contents = "";
+
+                                if (rIndex === 0 || rIndex === 10 || cIndex === 0 || cIndex === 10 ) {
+                                    boxclass = "theBox";
+                                    if ((rIndex+cIndex)%2 === 0) {
+                                        boxclass += " black"
+                                    }
+                                    contents = "This is the boarder"
+                                } 
+
+
+                                
                                 return (
                                     <div
-                                        className={`box ${"theBox"}`}
+                                        className={`box ${boxclass}
+                                        }`}
                                         key={cIndex}
-                                    ></div>
+                                    >
+                                        {contents}
+                                    </div>
                                 );
                             })}
                         </div>
@@ -54,7 +70,3 @@ function Board() {
 
 
 export default Board;
-
-//Will probably make a grid board of some sort, blank out middle 
-//lines so only outside squares show
-//Able to do a grid, just need to show the GD lines... 

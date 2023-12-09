@@ -13,3 +13,11 @@
   border-width: 1px;
   border-color: black;
 }
+
+.black {
+  background-color: lightgreen;
+}
+
+.white {
+  background-color: lightgray;
+}
