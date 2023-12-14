@@ -14,10 +14,30 @@
   border-color: black;
 }
 
+.noBox {
+  background-color: ghostwhite;
+  border-style: solid;
+  border-width: 1px;
+  border-color: ghostwhite;
+}
+
 .black {
   background-color: lightgreen;
 }
 
 .white {
   background-color: lightgray;
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.rotateNeg90 {
+  transform: rotate(-90deg);
+
 }

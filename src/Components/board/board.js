@@ -1,4 +1,5 @@
 import './board.css';
+import Property from './property';
 import { useEffect, useState } from "react";
 
 function Board() {
@@ -26,7 +27,6 @@ function Board() {
             result.push(row);
         }
 
-        
         setChessBoard(result);
     }, []);
 
@@ -42,11 +42,25 @@ function Board() {
 
                                 if (rIndex === 0 || rIndex === 10 || cIndex === 0 || cIndex === 10 ) {
                                     boxclass = "theBox";
+                                    
                                     if ((rIndex+cIndex)%2 === 0) {
                                         boxclass += " black"
+                                    } 
+                                    //rotate outward
+                                    if (rIndex === 0) {
+                                        boxclass += " rotate180";
                                     }
-                                    contents = "This is the boarder"
-                                } 
+                                    else if (cIndex === 0) {
+                                        boxclass += " rotate90";
+                                    }
+                                    else if (cIndex === 10) {
+                                        boxclass += " rotateNeg90";
+                                    } 
+                                    
+                                    
+                                    contents = rIndex + ", " + cIndex;
+
+                                } else boxclass = "noBox";
 
 
                                 
