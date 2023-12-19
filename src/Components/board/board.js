@@ -38,7 +38,7 @@ function Board() {
                         <div className="row" key={rIndex}>
                             {row.map((_, cIndex) => {
                                 let boxclass = "";
-                                let contents = "";
+                                
 
                                 if (rIndex === 0 || rIndex === 10 || cIndex === 0 || cIndex === 10 ) {
                                     boxclass = "theBox";
@@ -58,7 +58,7 @@ function Board() {
                                     } 
                                     
                                     
-                                    contents = rIndex + ", " + cIndex;
+                                    
 
                                 } else boxclass = "noBox";
 
@@ -70,7 +70,7 @@ function Board() {
                                         }`}
                                         key={cIndex}
                                     >
-                                        {contents}
+                                        <Property r={rIndex} c={cIndex}/>
                                     </div>
                                 );
                             })}
