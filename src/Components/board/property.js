@@ -14,7 +14,7 @@ function Property (props) {
             break;
         case '0,1':
             card = "Kentucky Avenue";
-            //rent = x, prince = y, etc, etc, return the data back to the board. 
+            //rent = x, price = y, etc, etc, return the data back to the board. 
             break;
         case '0,2':
             card = "Chance"
@@ -139,8 +139,6 @@ function Property (props) {
         default:
             //nothing probably?
             break;
-
-            ///etc, etc, etc
     }
 
     return (
