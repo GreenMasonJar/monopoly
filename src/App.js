@@ -6,10 +6,11 @@ import { useState } from 'react';
 
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [players, setPlayers] = useState();
 
   return (
     <div>
-      <Board/>
+      <Board players={players} />
       <button onClick={() => setButtonPopup(true)}>Start Game</button>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <h3>My popup!</h3>

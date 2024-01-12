@@ -1,21 +1,42 @@
 import './board.css';
+import PlayerPawn from './player';
 import Property from './property';
 import { useEffect, useState } from "react";
 
-function Board() {
-    
-    
-    
-    const n = 11;
+function Board(props) {
 
-    
-    const m = 11;
+    /**
+     * Prefill players instead of hard code
+     * List players on the right and highlights the current player. Hint: Object.keys(player); get value by player[key]
+     * Start taking turns with dice
+     */
 
-    
+    //What we care about
     const [chessBoard, setChessBoard] = useState([]);
+    const [players, setPlayers] = useState(props.players ?? [{
+        coordinate: [1,0],
+        color: 'blue',
+        name: "1"
+    }, {
+        coordinate: [1,0],
+        color: 'darkred',
+        name: "2"
+    }, {
+        coordinate: [10,4],
+        color: 'green',
+        name: "3"
+    }, {
+        coordinate: [10,1],
+        color: 'black',
+        name: "4"
+    }]); // object per player
 
+    //How we do things
     useEffect(() => {
+        const n = 11;
 
+    
+        const m = 11;
         
         const result = [];
 
@@ -29,6 +50,17 @@ function Board() {
 
         setChessBoard(result);
     }, []);
+
+    function renderPlayers (rIndex, cIndex){
+        var returnVar = [];
+        for ( let i = 0; i < players.length; i++) {
+            const player = players[i];
+            if (player.coordinate[0] === rIndex && player.coordinate[1] === cIndex) {
+                returnVar.push(<PlayerPawn player={player} />);
+            }
+        }
+        return returnVar;
+    }
 
     return (
         <>
@@ -71,6 +103,15 @@ function Board() {
                                         key={cIndex}
                                     >
                                         <Property r={rIndex} c={cIndex}/>
+
+                                        {
+                                            //ask for position and render if needed
+                                            
+                                                 renderPlayers(rIndex, cIndex)
+                                            
+                                           
+                                            
+                                        }
                                     </div>
                                 );
                             })}
