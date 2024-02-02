@@ -1,5 +1,5 @@
 import './board.css';
-import PlayerPawn from './player';
+import PlayerPawn from './playerpawn';
 import Property from './property';
 import { useEffect, useState } from "react";
 
@@ -13,23 +13,25 @@ function Board(props) {
 
     //What we care about
     const [chessBoard, setChessBoard] = useState([]);
-    const [players, setPlayers] = useState(props.players ?? [{
-        coordinate: [1,0],
-        color: 'blue',
-        name: "1"
-    }, {
-        coordinate: [1,0],
-        color: 'darkred',
-        name: "2"
-    }, {
-        coordinate: [10,4],
-        color: 'green',
-        name: "3"
-    }, {
-        coordinate: [10,1],
-        color: 'black',
-        name: "4"
-    }]); // object per player
+    function getPlayers() {
+        return props.players.length > 0 ? props.players : [{
+            coordinate: [1,0],
+            color: 'blue',
+            name: "1"
+        }, {
+            coordinate: [1,0],
+            color: 'darkred',
+            name: "2"
+        }, {
+            coordinate: [10,4],
+            color: 'green',
+            name: "3"
+        }, {
+            coordinate: [10,1],
+            color: 'black',
+            name: "4"
+        }]; // object per player
+    }
 
     //How we do things
     useEffect(() => {
@@ -53,6 +55,7 @@ function Board(props) {
 
     function renderPlayers (rIndex, cIndex){
         var returnVar = [];
+        var players = getPlayers();
         for ( let i = 0; i < players.length; i++) {
             const player = players[i];
             if (player.coordinate[0] === rIndex && player.coordinate[1] === cIndex) {
@@ -62,8 +65,16 @@ function Board(props) {
         return returnVar;
     }
 
+    function playerInfo() {
+        for (let i=0; getPlayers().length; i++) {
+
+        }
+    }
+
     return (
-        <>
+        <><div className="playerInfo">
+            
+        </div>
             {chessBoard.length > 0 &&
                 chessBoard.map((row, rIndex) => {
                     return (
