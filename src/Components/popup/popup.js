@@ -7,7 +7,7 @@ import SubmitBtn from '../genericComps/submitButton';
 //Popup will have info for players when starting the game. ie: number of players, their names, and what piece they will use. 
 
 function Popup(props) {
-    const [playerNames, setPlayerNames] =useState (["a", "b", "c", "d", "e", "f", "g", "h"]);
+    const [playerNames, setPlayerNames] =useState (["Player Name", "Player Name", "Player Name", "Player Name", "Player Name", "Player Name", "Player Name", "Player Name"]);
 
     
 
@@ -16,15 +16,22 @@ function Popup(props) {
     function handleSubmit(e) {
         e.preventDefault();
         
+        //Creating new array that will be changed as we check business rules
+        var newArray = [];
+
         for (let i = 0; i < playerNames.length; i++) {
             
-            if (playerNames[i].length < 1) {
-                alert("INVALID"); //Change to show a nicer method 
-                 //ends function before having to do other unnecessary work        
+            //If the name is the same as starting value or blank, they're not added to player list.
+            if (playerNames[i] != 'Player Name' || playerNames[i].length <1) {
+                debugger;
+                newArray.push(playerNames[i]);
             }
+            
         }
-        props.getPlayerName(playerNames);
+        //send the newArray(filtered array) to App.js as playerNames
+        props.getPlayerName(newArray);
 
+        //popup goes away 
         props.setTrigger(false);
         
     }
