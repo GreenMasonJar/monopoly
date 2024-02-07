@@ -14,23 +14,7 @@ function Board(props) {
     //What we care about
     const [chessBoard, setChessBoard] = useState([]);
     function getPlayers() {
-        return props.players.length > 0 ? props.players : [{
-            coordinate: [1,0],
-            color: 'blue',
-            name: "1"
-        }, {
-            coordinate: [1,0],
-            color: 'darkred',
-            name: "2"
-        }, {
-            coordinate: [10,4],
-            color: 'green',
-            name: "3"
-        }, {
-            coordinate: [10,1],
-            color: 'black',
-            name: "4"
-        }]; // object per player
+        return props.players;// object per player
     }
 
     //How we do things

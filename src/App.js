@@ -17,7 +17,7 @@ function getPlayerName(playerNames) {
 
   for (var i = 0; i<playerNames.length; i++) {
     newPlayers.push({
-      coordinate: [i,0],
+      coordinate: [0,0],
       color: 'darkred',
       name: playerNames[i]
     })
