@@ -9,8 +9,6 @@ import SubmitBtn from '../genericComps/submitButton';
 function Popup(props) {
     const [playerNames, setPlayerNames] =useState (["Player Name", "Player Name", "Player Name", "Player Name", "Player Name", "Player Name", "Player Name", "Player Name"]);
 
-    
-
     //Submit step. Take values (players) and validate them (doo they exist, true/false)
     //Send players to App.js
     function handleSubmit(e) {
