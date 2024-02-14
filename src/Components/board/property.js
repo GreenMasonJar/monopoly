@@ -1,5 +1,6 @@
 import './board.css';
 import React from 'react';
+import './property.css';
 
 
 function Property (props) {
@@ -7,7 +8,7 @@ function Property (props) {
     const c = props.c;
     const [properties, setProperties] = React.useState([])
     
-    const propertyNames= ["Go", "Mediteranean Avenue", "Community Chest", "Baltic Ave", "Income Tax", "Reading Railroad", "Oriental Ave", "Chance", "Vermont Ave", "Connecticut Ave", "In Jail/ Visiting", "St. Charles Place", "Electric Co", "States Ave"];
+    const propertyNames= ["Go", "Mediteranean Avenue", "Community Chest", "Baltic Ave", "Income Tax", "Reading Railroad", "Oriental Ave", "Chance", "Vermont Ave", "Connecticut Ave", "In Jail/ Visiting", "St. Charles Place", "Electric Co", "States Ave", "Virginia Ave", "Painsylvania Railroad", "St. James Place", "Community Chest", "Tennessee Ave", "New York Ave", "Free Parking", "Kentucky Ave", "Chance", "Indiana Ave", "Illinois Ave", "B&O Railroad", "Atlantic Ave", "Ventnor Ave", "Water Works", "Marvin Gardens", "Go to Jail", "Pacific Ave", "North Caolina Ave", "Community Chest", "Pennsylvania Ave", "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"];
     React.useEffect(() => {
         if (properties.length === 0) {
             var tempProperties = []

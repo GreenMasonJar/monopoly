@@ -1,7 +1,6 @@
 import React from 'react'
 import './popup.css'
 import InputBox from '../genericComps/inputbox';
-import Board from '../board/board';
 import { useState } from 'react';
 import SubmitBtn from '../genericComps/submitButton';
 //Popup will have info for players when starting the game. ie: number of players, their names, and what piece they will use. 
@@ -20,7 +19,7 @@ function Popup(props) {
         for (let i = 0; i < playerNames.length; i++) {
             
             //If the name is the same as starting value or blank, they're not added to player list.
-            if (playerNames[i] != 'Player Name' || playerNames[i].length <1) {
+            if (playerNames[i] !== 'Player Name' || playerNames[i].length <1) {
                 debugger;
                 newArray.push(playerNames[i]);
             }
