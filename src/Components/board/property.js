@@ -38,7 +38,6 @@ function Property (props) {
                 if( i === j || i + j === 10) {
                     side++;
                 }
-
                 
             }
             setProperties(tempProperties);
@@ -54,8 +53,6 @@ function Property (props) {
         }
         return display;
     }
-    
-    
 
     return (
         <div>
