@@ -20,7 +20,6 @@ function Popup(props) {
             
             //If the name is the same as starting value or blank, they're not added to player list.
             if (playerNames[i] !== 'Player Name' || playerNames[i].length <1) {
-                debugger;
                 newArray.push(playerNames[i]);
             }
             

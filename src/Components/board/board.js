@@ -1,4 +1,5 @@
 import './board.css';
+import PlayerList from './playerList';
 import PlayerPawn from './playerpawn';
 import Property from './property';
 import { useEffect, useState } from "react";
@@ -13,6 +14,8 @@ function Board(props) {
 
     //What we care about
     const [chessBoard, setChessBoard] = useState([]);
+    const [playerIndex, setPlayerIndex] = useState(0);
+
     function getPlayers() {
         return props.players;// object per player
     }
@@ -49,15 +52,67 @@ function Board(props) {
         return returnVar;
     }
 
-    function playerInfo() {
-        for (let i=0; getPlayers().length; i++) {
+    function diceRoll() {
+        var doubles = false;
 
+        //roll both dice
+        var dice1 = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
+
+        //are they doubles? Yes -> count and return, no -> nothing
+        if (dice1 === dice2) {
+            doubles = true;
+        }
+        var sum = dice1 + dice2;
+        //return boolian, count, and sum
+        return {total:sum, isDoubles:doubles};
+    }
+
+
+    function playerTurn () {
+        if (props.players[playerIndex].isPlaying == false) {
+            setPlayerIndex((playerIndex+1)%props.players.length)
+            
+        } else {
+            var roll = diceRoll();
+            console.log(roll)
+            //deduct $100
+            props.deduct(playerIndex, 100)
+            //move pawn
+
+            //buy -or- pay rent -or- action -or- nothing
+            //purchase homes/ hotels, trade with players,
+
+            //check if player is out 
+            var isOver = props.checkGameOver(playerIndex)
+            console.log(isOver)
+            
+            //check for end game
+            var index = playerIndex
+            var foundPlayer = false
+            for (let i=0; i<props.players.length; i++) {
+                index = (index+1)%props.players.length
+                console.log(index);
+                if (props.players[index].isPlaying == false) {
+                    continue;
+                } else foundPlayer = true;
+
+            }
+            if (!foundPlayer) {
+                console.log("Game Over")
+            }
+            setPlayerIndex((playerIndex+1)%props.players.length)
+            console.log(playerIndex);
         }
     }
+
+
 
     return (
         <><div className="playerInfo">
             
+           <PlayerList players={props.players} playerIndex={playerIndex}/> 
+           <button onClick={playerTurn}>Start turn</button>
         </div>
             {chessBoard.length > 0 &&
                 chessBoard.map((row, rIndex) => {

@@ -19,7 +19,9 @@ function getPlayerName(playerNames) {
     newPlayers.push({
       coordinate: [0,0],
       color: 'darkred',
-      name: playerNames[i]
+      money: 100+(200*i),
+      name: playerNames[i],
+      isPlaying: true
     })
   }
   
@@ -28,6 +30,28 @@ function getPlayerName(playerNames) {
 
 }
 
+function deduct(playerIndex, amount) {
+  var newPLayers = [...players]
+
+  newPLayers[playerIndex].money-=amount;
+
+  setPlayers(newPLayers);
+}
+
+//check to see if game is over for player
+function checkGameOver(playerIndex) {
+  
+
+  if (players[playerIndex].money <= 0) {
+    var newPlayers = [...players]
+
+    newPlayers[playerIndex].isPlaying = false;
+
+    setPlayers(newPlayers)
+    return true
+  }
+  return false
+}
 //function receives/"catches" the example data
 //Functin then console logs the exmaple date it receives
 function eventExample (exampleData) { 
@@ -36,9 +60,11 @@ function eventExample (exampleData) {
 }
   return (
     <div>
-      <Board players={players}/>
-      <button onClick={() => setButtonPopup(true)}>Start Game</button>
-      
+      <Board players={players} deduct={deduct} checkGameOver={checkGameOver}/>
+      {
+      !players.length ? 
+      <button onClick={() => setButtonPopup(true)}>Start Game</button>: null
+}
       { /*we then pass the reference data/ function (the address of it) to the Popup component as eventExample (see valuesChange on Popup for further notes)*/ }
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup} getPlayerName={getPlayerName}/>
       
