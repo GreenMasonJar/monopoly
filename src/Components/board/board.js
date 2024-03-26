@@ -72,14 +72,14 @@ function Board(props) {
     function playerTurn () {
         if (props.players[playerIndex].isPlaying == false) {
             setPlayerIndex((playerIndex+1)%props.players.length)
-            
+             
         } else {
             var roll = diceRoll();
             console.log(roll)
             //deduct $100
             props.deduct(playerIndex, 100)
             //move pawn
-
+            
             //buy -or- pay rent -or- action -or- nothing
             //purchase homes/ hotels, trade with players,
 

@@ -38,6 +38,15 @@ function deduct(playerIndex, amount) {
   setPlayers(newPLayers);
 }
 
+function movePawn(playerIndex, roll) {
+  var newCoor = players.coordinate;
+  while(roll > 0) {
+    if (newCoor[0] === 0) {
+      
+    }
+  }
+}
+
 //check to see if game is over for player
 function checkGameOver(playerIndex) {
   
