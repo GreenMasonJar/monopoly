@@ -75,11 +75,11 @@ function Board(props) {
              
         } else {
             var roll = diceRoll();
-            console.log(roll)
+            console.log("Roll = ", roll)
             //deduct $100
             props.deduct(playerIndex, 100)
             //move pawn
-            
+            props.movePawn(playerIndex, roll)
             //buy -or- pay rent -or- action -or- nothing
             //purchase homes/ hotels, trade with players,
 
