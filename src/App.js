@@ -40,7 +40,6 @@ function deduct(playerIndex, amount) {
 
 function movePawn(playerIndex, roll) {
   var newPlayers = [...players]
-  debugger;
   roll = roll.total;
   console.log("roll = ", roll);
   var newCoor = newPlayers[playerIndex].coordinate;
