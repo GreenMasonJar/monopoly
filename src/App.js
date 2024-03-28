@@ -49,15 +49,18 @@ function movePawn(playerIndex, roll) {
 
   //Start with int roll. If it goes around corner/wraps, update roll and do it again. If not, move ends. 
   while(roll > 0) {
-    //side 0 =[0,0] - [0,9] side1 = [0,10] - [9,10], side2 = [10,10] - [10, 1] side3 = [10, 0] - [1,0]
+    //side 0 =[0,0] - [0,9] 
+    //side1 = [0,10] - [9,10]
+    //side2 = [10,10] - [10, 1] 
+    //side3 = [10, 0] - [1,0]
     //Find what side it is (different sides update coordinates differently)
-    if (newCoor[0] === 0 && newCoor[1] > 0) {
+    if (newCoor[0] === 0 && newCoor[1] < 10) {
       var side = 0;
-    } else if (newCoor[0] > 0 && newCoor[1] === 10) {
+    } else if (newCoor[0] <10 && newCoor[1] === 10) {
       var side = 1;
-    } else if (newCoor[0] === 10 && newCoor[1] < 10) {
+    } else if (newCoor[0] === 10 && newCoor[1] > 0) {
       var side = 2;
-    } else if (newCoor[0] < 10 && newCoor[1] === 0 ) {
+    } else if (newCoor[0] > 0 && newCoor[1] === 0 ) {
       var side = 3;
     }
 
@@ -90,7 +93,7 @@ function movePawn(playerIndex, roll) {
         i = 0;
       } else roll = 0;
     }
-    
+    newCoor = [i, j]
   }
   //update coordinates for player, then update the state
   newPlayers[playerIndex].coordinate = [i, j]
