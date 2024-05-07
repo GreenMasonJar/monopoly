@@ -81,6 +81,7 @@ function Board(props) {
             //move pawn
             props.movePawn(playerIndex, roll)
             //buy -or- pay rent -or- action -or- nothing
+            
             //purchase homes/ hotels, trade with players,
 
             //check if player is out 
