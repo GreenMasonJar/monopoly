@@ -17,14 +17,19 @@ function Property (props) {
             }
         })
         .then(res => res.json());
-        console.log(newData);
+        console.log("this is a test");
         setProperties(newData);
+        console.log(newData);
+        props.setProperties(properties);
+        //This is in App.js, passed through props as setState :)
+        //props.setProperties(newData);
     }
 
     // const propertyNames= ["Go", "Mediteranean Avenue", "Community Chest", "Baltic Ave", "Income Tax", "Reading Railroad", "Oriental Ave", "Chance", "Vermont Ave", "Connecticut Ave", "In Jail/ Visiting", "St. Charles Place", "Electric Co", "States Ave", "Virginia Ave", "Painsylvania Railroad", "St. James Place", "Community Chest", "Tennessee Ave", "New York Ave", "Free Parking", "Kentucky Ave", "Chance", "Indiana Ave", "Illinois Ave", "B&O Railroad", "Atlantic Ave", "Ventnor Ave", "Water Works", "Marvin Gardens", "Go to Jail", "Pacific Ave", "North Caolina Ave", "Community Chest", "Pennsylvania Ave", "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"];
     // const propertyPrice = [0,60,0,60,200,200,100,0,100,120,0,140,150,140,160,200,180,0,180,200,0,220,0,220,240,200,260,260,150,280,0,300,300,0,320,200,0,350,100,400]
     React.useEffect(() => {
         getData('/getObjects');
+        
         // if (properties.length === 0) {
         //     var tempProperties = []
             
@@ -64,7 +69,7 @@ function Property (props) {
     function renderProperty(){
         var display = "";
         for (let i=0; i<properties.length; i++) {
-            if (properties[i].coordinates[0] === r && properties[i].coordinates[1] === c) {
+            if (properties[i].coordinate[0] === r && properties[i].coordinate[1] === c) {
                 //Only display price if it's not 0
                 if (properties[i].price <= 0) {
                     display = properties[i].name
@@ -78,6 +83,7 @@ function Property (props) {
         return display;
     }
 
+    
 
 
     return (

@@ -77,7 +77,7 @@ function Board(props) {
             var roll = diceRoll();
             console.log("Roll = ", roll)
             //deduct $100
-            props.deduct(playerIndex, 100)
+            // props.deduct(playerIndex, 100)
             //move pawn
             props.movePawn(playerIndex, roll)
             //buy -or- pay rent -or- action -or- nothing
@@ -107,7 +107,9 @@ function Board(props) {
         }
     }
 
-
+    function getProperties(propertyList) {
+        props.getProperties(propertyList);
+    }
 
     return (
         <><div className="playerInfo">
@@ -153,7 +155,7 @@ function Board(props) {
                                         }`}
                                         key={cIndex}
                                     >
-                                        <Property r={rIndex} c={cIndex}/>
+                                        <Property r={rIndex} c={cIndex} setProperties={props.setProperties}/>
 
                                         {
                                             //ask for position and render if needed

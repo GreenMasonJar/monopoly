@@ -22,7 +22,9 @@ app.get("/getObjects", (req,res)=>{
             rent: result[i].rent,
             color: result[i].Color,
             type: result[i].Type,
-            coordinates: [result[i].r_index, result[i].c_index],
+            coordinate: [result[i].r_index, result[i].c_index],
+            isOwned: false,
+            owner: ""
         })
     }    
     res.send(tempProperties);

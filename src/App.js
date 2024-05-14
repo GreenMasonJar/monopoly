@@ -8,7 +8,7 @@ import InputBox from './Components/genericComps/inputbox';
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [players, setPlayers] = useState([]);
-  
+  const [properties, setProperties] = useState([]);
 
   //This here is receiving the inputted player name on the popup
   //And then setting the state. 
@@ -19,9 +19,12 @@ function getPlayerName(playerNames) {
     newPlayers.push({
       coordinate: [0,0],
       color: 'darkred',
-      money: 100+(200*i),
+      money: 1500,
       name: playerNames[i],
-      isPlaying: true
+      isPlaying: true,
+      propertyOn: "",
+      propertyOwned: []
+
     })
   }
   
@@ -30,13 +33,15 @@ function getPlayerName(playerNames) {
 
 }
 
-function deduct(playerIndex, amount) {
-  var newPLayers = [...players]
 
-  newPLayers[playerIndex].money-=amount;
+//Just to test deducting til Player is out
+// function deduct(playerIndex, amount) {
+//   var newPLayers = [...players]
 
-  setPlayers(newPLayers);
-}
+//   newPLayers[playerIndex].money-=amount;
+
+//   setPlayers(newPLayers);
+// }
 
 function movePawn(playerIndex, roll) {
   var newPlayers = [...players]
@@ -94,8 +99,16 @@ function movePawn(playerIndex, roll) {
     }
     newCoor = [i, j]
   }
-  //update coordinates for player, then update the state
-  newPlayers[playerIndex].coordinate = [i, j]
+  
+  //update coordinates for player
+  newPlayers[playerIndex].coordinate = [i, j];
+  //set what property they landed on...
+ 
+  for (let k=0; k < properties.length; k++) {
+    if (newPlayers[playerIndex].coordinate[0] == properties[k].coordinate[0] && newPlayers[playerIndex].coordinate[1] == properties[k].coordinate[1]) {
+      newPlayers[playerIndex].propertyOn = properties[k];
+    }
+  }
   setPlayers(newPlayers)
 }
 
@@ -121,16 +134,13 @@ function eventExample (exampleData) {
 }
   return (
     <div>
-      <Board players={players} deduct={deduct} checkGameOver={checkGameOver} movePawn={movePawn}/>
+      <Board players={players} checkGameOver={checkGameOver} movePawn={movePawn} setProperties={setProperties}/>
       {
       !players.length ? 
       <button onClick={() => setButtonPopup(true)}>Start Game</button>: null
 }
       { /*we then pass the reference data/ function (the address of it) to the Popup component as eventExample (see valuesChange on Popup for further notes)*/ }
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup} getPlayerName={getPlayerName}/>
-      
-        
-      
     </div>
   );
 }

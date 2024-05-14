@@ -5,12 +5,6 @@ import { useEffect, useState } from "react";
 
 function PlayerList(props) {
 
-    /**
-     * Prefill players instead of hard code
-     * List players on the right and highlights the current player. Hint: Object.keys(player); get value by player[key]
-     * Start taking turns with dice
-     */
-
     //What we care about
    
     function getPlayers() {
