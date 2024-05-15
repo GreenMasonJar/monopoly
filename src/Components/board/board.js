@@ -81,7 +81,7 @@ function Board(props) {
             //move pawn
             props.movePawn(playerIndex, roll)
             //buy -or- pay rent -or- action -or- nothing
-            
+            props.buySell(playerIndex)
             //purchase homes/ hotels, trade with players,
 
             //check if player is out 
@@ -107,9 +107,9 @@ function Board(props) {
         }
     }
 
-    function getProperties(propertyList) {
-        props.getProperties(propertyList);
-    }
+    // function getProperties(propertyList) {
+    //     props.getProperties(propertyList);
+    // }
 
     return (
         <><div className="playerInfo">

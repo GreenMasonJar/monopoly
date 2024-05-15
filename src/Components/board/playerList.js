@@ -36,11 +36,14 @@ function PlayerList(props) {
                     <b>Color: </b> {player.color}
                 </div>
                 <div>
-                    <b>Coordinates: </b> {player.coordinate}
+                    <b>Coordinates: </b> {player.coordinate.toString()}
 
                 </div>
                 <div>
                     <b>Money: $</b> {player.money}
+                </div>
+                <div>
+                    <b>Properties Owned: </b> {player.propertyOwned.toString()}
                 </div>
             </div>);
             

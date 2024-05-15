@@ -20,7 +20,7 @@ function Property (props) {
         console.log("this is a test");
         setProperties(newData);
         console.log(newData);
-        props.setProperties(properties);
+        props.setProperties(newData);
         //This is in App.js, passed through props as setState :)
         //props.setProperties(newData);
     }

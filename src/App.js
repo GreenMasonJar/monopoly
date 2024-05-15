@@ -47,6 +47,7 @@ function movePawn(playerIndex, roll) {
   var newPlayers = [...players]
   roll = roll.total;
   console.log("roll = ", roll);
+  console.log(properties);
   var newCoor = newPlayers[playerIndex].coordinate;
   var i = 0;
   var j = 0;
@@ -103,13 +104,94 @@ function movePawn(playerIndex, roll) {
   //update coordinates for player
   newPlayers[playerIndex].coordinate = [i, j];
   //set what property they landed on...
- 
+  //debugger;
   for (let k=0; k < properties.length; k++) {
     if (newPlayers[playerIndex].coordinate[0] == properties[k].coordinate[0] && newPlayers[playerIndex].coordinate[1] == properties[k].coordinate[1]) {
       newPlayers[playerIndex].propertyOn = properties[k];
     }
   }
   setPlayers(newPlayers)
+}
+
+function buySell(playerIndex) {
+  var newPlayers = [...players]
+  var newProperties = [...properties]
+  let currentProp = newPlayers[playerIndex].propertyOn
+
+  //Check if it's a Property and if it's owned
+  switch (currentProp.type) {
+    
+    case "Property":
+      if (currentProp.isOwned == false) {
+        //pay it
+        newPlayers[playerIndex].money = newPlayers[playerIndex].money - currentProp.price;
+        //Add it to owned list for player
+        newPlayers[playerIndex].propertyOwned.push(currentProp.name);
+        //add owner to list for Property
+        currentProp.owner = newPlayers[playerIndex].name;
+
+      } else {
+        //find the owner in player array
+        for (let i = 0; i < newPlayers.length; i++) {
+          if (newPlayers[i].name == currentProp.owner) {
+            //current player pays
+            newPlayers[playerIndex].money = newPlayers[playerIndex].money - currentProp.rent;
+            //owner gets payed
+            newPlayers[i].money = newPlayers[i].money + currentProp.rent;
+            break;
+          }
+        }
+        
+      }
+      break;
+    
+    case "Community Chest":
+      //pass
+      break;
+
+    case "Income Tax":
+      //play pays tax
+      break;
+
+    case "Railroad":
+      //treated like a property...
+      break;
+
+    case "Chance":
+      //pass for now
+      break;
+
+    case "Jail":
+      //go to jail... womp womp
+      break;
+
+    case "Electric":
+      //I think treated like properties?
+      break;
+
+    case "Parking":
+      //nothing happens, free space
+      break;
+
+    case "Water Works":
+      //treated like property I think? 
+      break;
+
+    case "Short Line":
+      //something happens idk
+      break;
+
+    case "Luxury Tax":
+      //pay the tax womp womp 
+      break;
+  }
+  for (let i=0; i < newProperties.length; i++) {
+    if (currentProp.coordinate == newProperties[i].coordinate) {
+      newProperties[i] = currentProp;
+    }
+  }
+  setPlayers(newPlayers);
+  setProperties(newProperties);
 }
 
 //check to see if game is over for player
@@ -134,7 +216,7 @@ function eventExample (exampleData) {
 }
   return (
     <div>
-      <Board players={players} checkGameOver={checkGameOver} movePawn={movePawn} setProperties={setProperties}/>
+      <Board players={players} checkGameOver={checkGameOver} movePawn={movePawn} setProperties={setProperties} buySell={buySell}/>
       {
       !players.length ? 
       <button onClick={() => setButtonPopup(true)}>Start Game</button>: null
